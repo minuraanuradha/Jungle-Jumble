@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../auth/login.html"); // Redirect if not logged in
+    exit();
+}
+$username = $_SESSION['username'];
+$highScore = $_SESSION['high_score'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +27,15 @@
         
         <img src="../../assets/images/monkey-01.png" style="width: 150px;">
 
-        <h5 class="mt-1">User Name</h5>
-        <h6 class="mt-1">High Score</h6>
+        <h5 class="mt-1"><?php echo htmlspecialchars($username); ?></h5>
+        <h6 class="mt-1"> <?php echo htmlspecialchars($highScore); ?></h6>
 
         <a href="../game/game.html" class="btn btn-primary mt-3">START NEW GAME</a>
         <a href="../game/leaderboard.html" class="btn btn-secondary mt-1">LEADER BOARD</a>
         <a href="../game/howtoplay.html" class="btn btn-secondary mt-1">HOW TO PLAY</a>
         <a href="../game/setting.html" class="btn btn-secondary mt-1">SETTING</a>
 
-        <a href="../auth/login.html" class="btn btn-dark mt-3">GO BACK</a>
+        <a href="../../controllers/logout.php" class="btn btn-dark mt-3">LOG OUT</a>
         
     </div>
 
