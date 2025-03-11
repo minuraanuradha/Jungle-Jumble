@@ -8,25 +8,50 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 
-    <title>Sign Up Page</title>
+    <title>User Registration Page</title>
 
 </head>
 <body class="bg-green display-center-center bg-1">
 
     <div class="small-container display-center-center">
         <div class=" display-center-center">
-            <img src="../../assets/images/monkey-01.png" style="width: 150px;">
-
-            <input type="text" name="username" id="username" placeholder="USER NAME" class="mt-1" >
-            <input type="password" name="C-Password" id="C-Password" placeholder="CONFORM PASSWORD" class="mt-1">
-            <input type="password" name="Password" id="Password" placeholder="PASSWORD" class="mt-1">
-            <input type="email" name="email" id="email" placeholder="EMAIL" class="mt-1">
-
-            <a href="../../views/auth/signup.html" class="btn btn-secondary mt-1">SIGN UP</a>
+            <form action="../../controllers/AuthController.php" method="POST" onsubmit="return validateSignup()" class="display-center-center">
+                <img src="../../assets/images/monkey-01.png" style="width: 150px;">
+    
+                <input type="hidden" name="action" value="signup"> <!-- Hidden field to specify signup action -->
+    
+                <input type="text" name="username" id="username" placeholder="USER NAME" class="mt-1" required>
+                <input type="email" name="email" id="email" placeholder="EMAIL" class="mt-1" required>
+                <input type="password" name="password" id="password" placeholder="PASSWORD" class="mt-1" required>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="CONFIRM PASSWORD" class="mt-1" required>
+    
+                <button type="submit" class="btn btn-secondary mt-1">SIGN UP</button>
+            </form>
             <a href="../../views/startup.html" class="btn btn-dark mt-3">GO BACK</a>
         </div>
     </div>
 
+    <script>
+        function validateSignup() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm_password").value;
+    
+            // Password requirements
+            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 6 characters, include one uppercase, one lowercase, one number, and one special character.");
+                return false;
+            }
+    
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">
         <source src="../../assets/images/bg.mp4" type="video/mp4">
