@@ -3,6 +3,7 @@ session_start(); // Start session globally
 require_once 'config/db.php';
 require_once 'models/UserModel.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
