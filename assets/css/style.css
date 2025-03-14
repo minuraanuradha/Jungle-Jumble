@@ -84,6 +84,24 @@
     outline: none;
     border: none;
 }
+.flex-input{
+    width: 90%;
+    height: 35px;
+    font-family: var(--font-family);
+    font-size: 0.7rem;
+    font-weight:600;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    align-content: center;
+    letter-spacing: 0.01rem;
+    border: none;
+    border-radius: var(--radius);
+    transition: 0.3s ease-in-out;
+    background-color: rgb(214, 214, 214);
+    box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
+    color: var(--black-dark);
+}
 .checkbox{
     width: 300px;
     height: 20px;
@@ -123,6 +141,22 @@
 }
 .sm-btn{
     width: 140px;
+    height: 35px;
+    font-family: var(--font-family);
+    font-size: 0.7rem;
+    font-weight:600;
+    text-decoration: none;
+    text-align: center;
+    align-content: center;
+    letter-spacing: 0.01rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
+}
+.flex-btn{
+    width: 90%;
     height: 35px;
     font-family: var(--font-family);
     font-size: 0.7rem;
@@ -254,6 +288,12 @@ a{
     align-items: center;
     justify-content: center;
 }
+.display-center-right{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:end;
+}
 
 /* CONTAINERS */
 /* ============================== */
@@ -270,6 +310,17 @@ a{
     background-color: var(--text-white);
     box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 12px 9px;
     border-radius: var(--radius);
+}
+.left-container{
+    width: 70%;
+    background-color:#000011;
+    margin: 5px;
+}
+.right-container{
+    width: 30%;
+}
+.banana{
+    display: flex;
 }
 .row{
     display: flex;
