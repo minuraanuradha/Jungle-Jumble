@@ -1,3 +1,25 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../auth/login.html"); // Redirect if not logged in
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+require_once '../../config/db.php';
+$database = new Database();
+$db = $database->connect();
+
+// Fetch the logged-in user's high score
+$query = "SELECT high_score FROM users WHERE username = ?";
+$stmt = $db->prepare($query);
+$stmt->execute([$username]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$highScore = $user ? $user['high_score'] : 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 
@@ -17,19 +40,19 @@
 <body class="bg-green display-center-center bg-1">
 
     <div class="long-row">
-        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Hint</p>
+        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;"></p>
         <img src="../../assets/images/Logo.png" style="width: 8vw;">
         <div class="row"> 
-            <p class="sm-btn" style="background-color: #F8D45C;color: white; margin-right: 10px;">Score: <span id="score">0</span></p>
+            <p class="sm-btn" style="background-color: #F8D45C;color: white; margin-right: 10px;  display: flex; align-items: center;justify-content: center;">Score: <span id="score"> 0</span></p>
             <p class="sm-btn" style="background-color: #FF5454;color: white;">Lives: <span id="lives">3</span></p>
         </div>
     </div>
 
     <div class="large-container display-center-center mt-1">
         <p class="timer">⏳ 20s</p>
-        <h1 class="mt-3 sufflewords"></h1>
-        <p class="mt-2 hint">Hint:  <span> </span></p>
-        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-4 input" >
+        <h2 class="mt-3 sufflewords"></h2>
+        <p class="mt-4 hint">Hint:  <span> </span></p>
+        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-2 input" >
 
         <div class="sm-row">
             <button class="sm-btn btn-secondary mt-1 refesh_BTN">Refresh Word</button>
@@ -42,10 +65,10 @@
         </div>
     </div>
 
-    <a href="../../views/game/home.html" class="sm-btn btn-dark mt-2">GO BACK</a>
+    <a href="../../views/game/home.html" class="sm-btn btn-dark mt-2">EXIT</a>
 
     <!-- Message Box -->
-    <div class="message-box" style="display: none; background-color: white; padding: 15px; border-radius: 5px; text-align: center;">
+    <div class="message-box" style="display: none;  text-align: center;  display: flex;  flex-direction: column; align-items: center; justify-content: center;">
         <p class="message-text"></p>
     </div>
 

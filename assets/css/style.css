@@ -13,6 +13,8 @@
     --black-light: #2A2A2A;
     --black-dark: #171717;
 
+    --red:rgb(255, 81, 81);
+
     --text-white: #FFFFFF;
 
     --font-family:  'Open Sans', sans-serif;
@@ -39,6 +41,8 @@
 .mt-3 { margin-top: 30px; }
 .mt-4 { margin-top: 40px; }
 .mt-5 { margin-top: 50px; }
+.ml-1 { margin-left: 10px; }
+.mr-1 { margin-right: 10px; }
 
 /*  CONTAINER STYLES              */
 /* ============================== */
@@ -58,7 +62,7 @@
 
 /*  All INPUT STYLES              */
 /* ============================== */
-input{
+.input{
     width: 300px;
     height: 35px;
     font-family: var(--font-family);
@@ -76,11 +80,27 @@ input{
     box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
     color: var(--black-dark);
 }
-input:focus{
+.input:focus{
     outline: none;
     border: none;
 }
-
+.checkbox{
+    width: 300px;
+    height: 20px;
+    font-family: var(--font-family);
+    font-size: 0.7rem;
+    font-weight:600;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 5px;
+    letter-spacing: 0.01rem;
+    border: none;
+    border-radius: var(--radius);
+    transition: 0.3s ease-in-out;
+    color: var(--black-dark);
+    display: flex;
+    align-items: center;
+}
 /* All BUTTON STYLES */
 /* ============================== */
 
@@ -102,7 +122,7 @@ input:focus{
     box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
 }
 .sm-btn{
-    width: 130px;
+    width: 140px;
     height: 35px;
     font-family: var(--font-family);
     font-size: 0.7rem;
@@ -141,6 +161,14 @@ input:focus{
 .btn-dark:hover{
     background-color: var(--black-dark);
 }
+/* Dark Button */
+.btn-red{
+    background-color: var(--red);
+    color: var(--text-white);
+}
+.btn-red:hover{
+    background-color: var(--black-dark);
+}
 
 /* TEXT STYLES */
 /* ============================== */
@@ -152,23 +180,42 @@ h5, h6 {
     align-content: center;
     border-radius: var(--radius);
     transition: 0.3s ease-in-out;
-    background-color: var(--text-white);
-    box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
-    color: var(--black-dark);
+    color: var(--text-white);
 }
-
+h1{
+    font-family: var(--font-family);
+    text-align: center;    
+    font-size: 2rem;
+    font-weight:900;
+    letter-spacing: 0.001rem;
+}
 h5 {
-    height: 50px;
-    font-size: 1.5rem;
+    height: 40px;
+    font-size: 2.2rem;
     font-weight: 800;
 }
-
 h6 {
-    height: 30px;
-    font-size: 0.9rem;
+    height: 25px;
+    font-size: 1rem;
     font-weight: 800;
 }
-
+.sufflewords{
+    font-family: var(--font-family);
+    text-align: center;    
+    font-size: 2rem;
+    font-weight:800;
+    letter-spacing: 0.2rem;
+}
+.linkpara{
+    width: 300px;
+    font-family: var(--font-family);
+    font-size: 0.7rem;
+    font-weight:600;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
 
 /*   BACKGROUND STYLES   */
 /* ============================== */
@@ -228,7 +275,6 @@ h6 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 .sm-row{
     display: flex;
