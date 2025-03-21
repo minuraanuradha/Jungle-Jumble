@@ -9,9 +9,8 @@ const messageText = document.querySelector(".message-text"); // Text inside mess
 const scoreText = document.querySelector("#score"); // Score display
 const livesText = document.querySelector("#lives"); // Lives count display
 const gameOverBox = document.querySelector(".game-over"); // Game over screen
+const bananaGameBox = document.querySelector(".banana-game");
 const finalScoreText = document.querySelector("#final-score"); // Final score display
-
-gameOverBox.style.display = "none"; // Hide game over screen initially
 
 // Declaring game variables
 let CorrectWord;
@@ -49,6 +48,7 @@ const initGame = () => {
     console.log("Initializing game...");
     
     gameOverBox.style.display = "none"; // Hide game over screen when game starts
+    bananaGameBox.style.display = "none"; // Hide game over screen when game starts
     clearInterval(timer); // Stop any previous timer
     inputField.value = ""; // Clear input field
     inputField.focus(); // Focus on input field for better UX
@@ -101,36 +101,68 @@ const checkWord = () => {
     setTimeout(initGame, 2000);
 };
 
+const askToPlayBananaGame = () => {
+    console.log("Asked to Play Banana triggered"); // Debugging
+    bananaGameBox.style.display = "flex"; // Show the modal
+
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    modal.innerHTML = `
+        <div class="modal-content">
+            <img src="../../assets/images/monkey-thinking.png" style="width: 150px;">
+            <h2>❓ Want Another Chance?</h2>
+            <p>Play the Banana Game to earn an extra life!</p>
+            <button onclick="playBananaGame()">🍌 Play</button>
+            <button onclick="gameOver()">❌ No, End Game</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    modal.style.display = "flex";
+};
+
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('bonusLife')) {
+        lives = 1;
+        livesText.innerHTML = lives;
+        score = parseInt(urlParams.get('score'));
+        scoreText.innerHTML = score;
+        initGame();
+    }
+};
+
 // Function to Reduce Lives When Answer is Wrong
 const loseLife = () => {
-    if (lives <= 0) return; // Prevents going below 0
+    if (lives <= 0) return; // Prevents running multiple times
     lives--;
     livesText.innerHTML = lives;
 
     if (lives <= 0) {
-        gameOver(); // Call game over function if no lives left
+        askToPlayBananaGame();
+    } else {
+        setTimeout(initGame, 2000); // Only load next word if lives remain
     }
 };
 
 // Function to Handle Game Over
 const gameOver = () => {
-    if (gameOverBox.style.display === "flex") return; // Prevents running multiple times
-
-    clearInterval(timer); // Stop timer
-    gameOverBox.style.display = "flex"; // Show game over screen
+    console.log("Game Over triggered"); // Debugging
+    clearInterval(timer);
+    gameOverBox.style.display = "flex"; // Ensure visibility
     finalScoreText.innerHTML = score;
+
     refreshBtn.disabled = true;
     checkBtn.disabled = true;
 
-    // Display Game Over message with Restart and Go Back options
     gameOverBox.innerHTML = `
+        <img src="../../assets/images/monkey-crying.png" style="width: 150px;">
         <h1>💀 Game Over!</h1>
-        <p class="mt-5">Your Final Score: <span>${score}</span></p>
+        <p class="mt-1">Your Final Score: <span>${score}</span></p>
         <button onclick="restartGame()" class="btn btn-primary mt-3">Restart Game</button>
-        <a href="../../views/game/home.php" class="btn btn-dark mt-2">Go Back</a>
+        <a href="../../views/game/home.php" class="btn btn-red mt-2">Exit</a>
     `;
 
-    // Save high score to database
     fetch("../../controllers/updateScore.php", {
         method: "POST",
         body: new URLSearchParams({ score }),
@@ -139,6 +171,26 @@ const gameOver = () => {
     .then(response => response.json())
     .then(data => console.log(data.message));
 };
+
+// On Page Load, Check for Bonus Life
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('bonusLife')) {
+        lives = 1; // Grant an extra life
+        livesText.innerHTML = lives;
+        score = parseInt(urlParams.get('score')); // Retrieve the score
+        scoreText.innerHTML = score;
+        initGame(); // Restart the game
+    } else {
+        initGame(); // Start the game normally
+    }
+};
+
+function playBananaGame() {
+    console.log("Starting Banana Game...");
+    window.location.href = "bananagame.php?score=" + score;
+}
+
 
 // Function to Restart the Game
 const restartGame = () => {
