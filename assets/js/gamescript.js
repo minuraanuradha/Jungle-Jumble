@@ -105,6 +105,9 @@ const askToPlayBananaGame = () => {
     console.log("Asked to Play Banana triggered"); // Debugging
     bananaGameBox.style.display = "flex"; // Show the modal
 
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
     modal.innerHTML = `
         <div class="modal-content">
             <img src="../../assets/images/monkey-thinking.png" style="width: 150px;">
@@ -115,6 +118,7 @@ const askToPlayBananaGame = () => {
         </div>
     `;
     document.body.appendChild(modal);
+    modal.style.display = "flex";
 };
 
 window.onload = () => {
@@ -167,6 +171,25 @@ const gameOver = () => {
     .then(response => response.json())
     .then(data => console.log(data.message));
 };
+
+// On Page Load, Check for Bonus Life
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('bonusLife')) {
+        lives = 1; // Grant an extra life
+        livesText.innerHTML = lives;
+        score = parseInt(urlParams.get('score')); // Retrieve the score
+        scoreText.innerHTML = score;
+        initGame(); // Restart the game
+    } else {
+        initGame(); // Start the game normally
+    }
+};
+
+function playBananaGame() {
+    console.log("Starting Banana Game...");
+    window.location.href = "bananagame.php?score=" + score;
+}
 
 
 // Function to Restart the Game

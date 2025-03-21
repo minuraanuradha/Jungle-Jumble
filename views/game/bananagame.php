@@ -16,13 +16,7 @@ $score = isset($_GET['score']) ? intval($_GET['score']) : 0;
 // Assume this is where you determine if the player won
 $playerWon = false; // This should be set based on the game logic
 
-// Process the result
-if ($playerWon) {
-    header("Location: mainGame.php?bonusLife=1&score=$score"); // Return to game with +1 life
-} else {
-    header("Location: gameOver.php?score=$score"); // End game
-}
-exit();
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +31,6 @@ exit();
     <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
 
     <script src="../../assets/js/words.js" defer></script>
-    <script src="../../assets/js/gamescript.js" defer></script>
     <script src="../../assets/js/bananaGame.js" defer></script>
 
 
@@ -56,17 +49,25 @@ exit();
 
     <div class="large-container mt-1 banana">
         <div class="display-center-center left-container">
-            1
+            10000
         </div>
         <div class="display-center-center right-container">
             <p class="timer">⏳ 20s</p>
-            <input type="text" name="checknum" id="checknum" placeholder="Can you Solve this?" class="mt-2 flex-input" >
+            <input type="text" name="checknum" id="checknum" placeholder="Can you Solve this?" class="mt-2 flex-input" autofocus >
                 <button class="flex-btn btn-primary mt-1 checknum_BTN Enter">Enter Value</button>
 
         </div>
     </div>
 
     <a href="../../views/game/home.html" class="sm-btn btn-dark mt-2">EXIT</a>
+
+    <!-- Game Over Notification -->
+    <div class="game-over" style="display: none;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.91); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="../../assets/images/monkey-crying.png" style="width: 150px;">
+        <h1>💀 Game Over!</h1>
+        <p class="mt-1">Your Final Score: <span id="final-score">0</span></p>
+        <a href="../../views/game/home.php" class="btn btn-red mt-2">Exit</a>
+    </div>
 
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">
