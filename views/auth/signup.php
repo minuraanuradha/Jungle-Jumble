@@ -17,7 +17,7 @@
         <div class=" display-center-center">
             <form action="../../controllers/AuthController.php" method="POST" onsubmit="return validateSignup()" class="display-center-center">
                 <h1 class="mt-1">SIGN UP</h1>
-                <img src="../../assets/images/monkey-01.png" style="width: 150px;" class="s">
+                <img src="../../assets/images/monkey-smiling.png" style="width: 150px;" class="s">
     
                 <input type="hidden" name="action" value="signup" class="input"> <!-- Hidden field to specify signup action -->
     
@@ -27,7 +27,7 @@
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="CONFIRM PASSWORD" class="mt-1 input" required>
     
                 <button type="submit" class="btn btn-secondary mt-1">SIGN UP</button>
-                <p class="mt-1 linkpara">Already have an account? <a href="./login.html">Log In</a></p>
+                <p class="mt-1 linkpara">Already have an account? <a href="./login.php">Log In</a></p>
             </form>
         </div>
     </div>

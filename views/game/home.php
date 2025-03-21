@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../auth/login.html"); // Redirect if not logged in
+    header("Location: ../auth/login.php"); // Redirect if not logged in
     exit();
 }
 
@@ -37,13 +37,13 @@ $highScore = $user ? $user['high_score'] : 0;
 
     <div class=" display-center-center" style="height: 100vh;">
         
-        <img src="../../assets/images/monkey-01.png" style="width: 150px;">
+        <img src="../../assets/images/monkey-smiling.png" style="width: 150px;">
 
         <h5 class="mt-1"> Hello, <?php echo htmlspecialchars($username); ?>!</h5>
         <h6 class="mt-2">🎯High Score : <?php echo htmlspecialchars($highScore); ?></h6>
 
         <a href="../game/game.php" class="btn btn-primary mt-3">START NEW GAME</a>
-        <a href="../game/leaderboard.html" class="btn btn-secondary mt-1">LEADER BOARD</a>
+        <a href="../game/leaderboard.php" class="btn btn-secondary mt-1">LEADER BOARD</a>
         <a href="../game/howtoplay.html" class="btn btn-secondary mt-1">HOW TO PLAY</a>
         <a href="../game/setting.html" class="btn btn-secondary mt-1">SETTING</a>
 

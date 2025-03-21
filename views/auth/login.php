@@ -16,7 +16,7 @@
     <div class="small-container display-center-center">
         <form action="../../controllers/AuthController.php" method="POST" class="display-center-center" id="loginForm">
             <h1 class="mt-2">LOG IN</h1>
-            <img src="../../assets/images/monkey-01.png" style="width: 150px;" class="mt-1">
+            <img src="../../assets/images/monkey-swinging.png" style="width: 150px;" class="mt-1">
 
             <input type="hidden" name="action" value="login" class="input"> <!-- Hidden field for authentication -->
 
@@ -30,7 +30,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">LOG IN</button>
-            <p class="mt-1 linkpara">Don't have an account? <a href="./signup.html">Sign Up</a></p>
+            <p class="mt-1 linkpara">Don't have an account? <a href="./signup.php">Sign Up</a></p>
         </form>
 
     </div>

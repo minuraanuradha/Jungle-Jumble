@@ -1,23 +1,28 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../auth/login.html"); // Redirect if not logged in
+    header("Location: ../auth/login.html");
     exit();
 }
 
 $username = $_SESSION['username'];
-
 require_once '../../config/db.php';
 $database = new Database();
 $db = $database->connect();
 
-// Fetch the logged-in user's high score
-$query = "SELECT high_score FROM users WHERE username = ?";
-$stmt = $db->prepare($query);
-$stmt->execute([$username]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+// Fetch current score from the request (if passed)
+$score = isset($_GET['score']) ? intval($_GET['score']) : 0;
 
-$highScore = $user ? $user['high_score'] : 0;
+// Assume this is where you determine if the player won
+$playerWon = false; // This should be set based on the game logic
+
+// Process the result
+if ($playerWon) {
+    header("Location: mainGame.php?bonusLife=1&score=$score"); // Return to game with +1 life
+} else {
+    header("Location: gameOver.php?score=$score"); // End game
+}
+exit();
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +38,8 @@ $highScore = $user ? $user['high_score'] : 0;
 
     <script src="../../assets/js/words.js" defer></script>
     <script src="../../assets/js/gamescript.js" defer></script>
+    <script src="../../assets/js/bananaGame.js" defer></script>
+
 
     <title>Collect Bananas Game Play</title>
 
