@@ -343,6 +343,66 @@ a{
 /*       PAGES      */
 /* ============================== */
 
+.leaderboard-container {
+    width: 100%;
+    padding:  5px 10px;
+}
+.leaderboard-card {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.095) 0px 0px 5px 2px;
+    padding: 8px;
+    border-radius: var(--radius);
+}
+/*  Fixed Header */
+.leaderboard-container.header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+/* Scrollable Section */
+.leaderboard-container.scrollable {
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto;
+}
+.leaderboard-card.gold {
+    background-color: #FFE557;
+}
+.leaderboard-card.silver {
+    background-color: #d4d4d4;
+}
+.leaderboard-card.bronze {
+    background-color: #FFB062;
+}
+.leaderboard-card .rank {
+    font-family: var(--font-family);
+    font-size: 0.8rem;
+    font-weight:600;
+    width: 50px;
+    text-align: center;
+}
+.leaderboard-card .name {
+    font-family: var(--font-family);
+    font-size: 0.8rem;
+    font-weight:600;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+.leaderboard-card .score {
+    font-family: var(--font-family);
+    font-size: 0.8rem;
+    font-weight:600;
+    width: 100px;
+    text-align: right;
+    padding-right: 15px;
+}
+.leaderboard-card:nth-child(even):not(.gold):not(.silver):not(.bronze) {
+    background-color: #f4f4f4;
+}
+.table-head{
+    background-color: var(--black-dark);
+    color: var(--text-white);
+}
 
 
 /* ============================== */
