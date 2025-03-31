@@ -34,60 +34,64 @@
         </form>
 
     </div>
+
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
+    
     <script>
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    let remember = document.getElementById("rememberMe").checked ? "on" : "off";
-    
-    if (username.length < 3 || password.length < 6) {
-        alert("Username must be at least 3 characters and password at least 6 characters.");
-        return;
-    }
-    
-    fetch("../../controllers/AuthController.php", {
-        method: "POST",
-        credentials: "include",
-        body: new URLSearchParams({ action: "login", username, password, remember }),
-        headers: { "Content-Type": "application/x-www-form-urlencoded" }
-    })
-    .then(response => response.text()) // Use .text() instead of .json() for debugging
-    .then(data => {
-        console.log(data); // Debugging: Log the response from the server
-        if (data.includes("success")) { // Check if the response contains "success"
-            window.location.href = "../game/home.php"; // Redirect to home page
-        } else {
-            alert("Invalid login credentials!");
+        event.preventDefault();
+        
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let remember = document.getElementById("rememberMe").checked ? "on" : "off";
+        
+        if (username.length < 3 || password.length < 6) {
+            alert("Username must be at least 3 characters and password at least 6 characters.");
+            return;
         }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
-    });
-});
+        
+        fetch("../../controllers/AuthController.php", {
+            method: "POST",
+            credentials: "include",
+            body: new URLSearchParams({ action: "login", username, password, remember }),
+            headers: { "Content-Type": "application/x-www-form-urlencoded" }
+        })
+        .then(response => response.text()) // Use .text() instead of .json() for debugging
+        .then(data => {
+            console.log(data); // Debugging: Log the response from the server
+            if (data.includes("success")) { // Check if the response contains "success"
+                window.location.href = "../game/home.php"; // Redirect to home page
+            } else {
+                alert("Invalid login credentials!");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        });
+        });
 
-// Auto-fill username if "Remember Me" was checked
-window.onload = function() {
-    let savedUsername = getCookie("username");
-    console.log("Retrieved username from cookie:", savedUsername); // Debugging
-    if (savedUsername) {
-        document.getElementById("username").value = savedUsername;
-        document.getElementById("rememberMe").checked = true;
-    }
-};
+        // Auto-fill username if "Remember Me" was checked
+        window.onload = function() {
+            let savedUsername = getCookie("username");
+            console.log("Retrieved username from cookie:", savedUsername); // Debugging
+            if (savedUsername) {
+                document.getElementById("username").value = savedUsername;
+                document.getElementById("rememberMe").checked = true;
+            }
+        };
 
-function getCookie(name) {
-    let cookies = document.cookie.split("; ");
-    for (let i = 0; i < cookies.length; i++) {
-        let cookiePair = cookies[i].split("=");
-        if (cookiePair[0].trim() === name) {
-            return decodeURIComponent(cookiePair[1]);
+        function getCookie(name) {
+            let cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                let cookiePair = cookies[i].split("=");
+                if (cookiePair[0].trim() === name) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
         }
-    }
-    return null;
-}
     </script>
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">

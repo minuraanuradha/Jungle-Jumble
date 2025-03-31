@@ -21,7 +21,7 @@ require_once 'models/UserModel.php';
 
     <div class="container display-center-center " >
         <img src="./assets/images/Logo.png" style="width:350px;" class="logo floating-logo" >
-        <a href="./views/startup.html" class="btn btn-primary mt-2">CLICK TO START</a>
+        <a href="./views/startup.php" class="btn btn-primary mt-2 btn-nav">CLICK TO START</a>
     </div>
 
     <!--Background Video-->
@@ -30,5 +30,9 @@ require_once 'models/UserModel.php';
     </video>
 
     <!--https://www.freepik.com/free-video/tropical-leaf-border-pattern_3876901#fromView=search&page=1&position=45&uuid=d3406444-6b5d-4e05-adaf-89292f73d882-->
+
+    <script src="assets/js/sound.js"></script>
+    <script src="assets/js/background-music.js"></script>
+    
 </body>
 </html>

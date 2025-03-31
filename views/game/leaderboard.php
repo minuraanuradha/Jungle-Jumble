@@ -30,78 +30,43 @@ $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title>LeaderBoard Page</title>
 
-    <style>
-        .leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 1.2em;
-}
-
-.leaderboard-table th {
-    background-color: #222;
-    color: #fff;
-    padding: 10px;
-}
-
-.leaderboard-table td {
-    background-color: #f4f4f4;
-    padding: 10px;
-}
-
-.gold {
-    background-color: #ffd700;
-}
-
-.silver {
-    background-color: #c0c0c0;
-}
-
-.bronze {
-    background-color: #cd7f32;
-}
-
-tr:nth-child(even) {
-    background-color: #e8e8e8;
-}
-
-    </style>
 </head>
 <body class="bg-green display-center-center">
 
     <div class="long-row">
-        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Hint</p>
+        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Leader Board</p>
         <img src="../../assets/images/Logo.png" style="width: 8vw;">
 
     </div>
 
     <div class="large-container display-center-center mt-1">
-    <table class="leaderboard-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>High Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $rank = 1;
-                foreach ($players as $player) {
-                    $highlightClass = ($rank == 1) ? 'gold' : (($rank == 2) ? 'silver' : (($rank == 3) ? 'bronze' : ''));
-                    echo "<tr class='{$highlightClass}'>
-                            <td>" . str_pad($rank, 2, "0", STR_PAD_LEFT) . "</td>
-                            <td>" . htmlspecialchars($player['username']) . "</td>
-                            <td>" . $player['high_score'] . "</td>
-                          </tr>";
-                    $rank++;
-                }
-                ?>
-            </tbody>
-        </table>
+        <div class="leaderboard-container header">
+        <div class='leaderboard-card  table-head'>
+                        <div class='rank'>Rank</div>
+                        <div class='name'>Name</div>
+                        <div class='score'>High Score</div>
+                    </div>
+        </div>
+        <div class="leaderboard-container scrollable">
+            <?php
+            $rank = 1;
+            foreach ($players as $player) {
+                $highlightClass = ($rank == 1) ? 'gold' : (($rank == 2) ? 'silver' : (($rank == 3) ? 'bronze' : ''));
+                echo "<div class='leaderboard-card {$highlightClass} mt-1'>
+                        <div class='rank'>" . str_pad($rank, 2, "0", STR_PAD_LEFT) . "</div>
+                        <div class='name'>" . htmlspecialchars($player['username']) . "</div>
+                        <div class='score'>" . $player['high_score'] . "</div>
+                    </div>";
+                $rank++;
+            }
+            ?>
+        </div>
     </div>
 
-    <a href="../../views/game/home.html" class="sm-btn btn-dark mt-2">GO BACK</a>
+    <a href="../../views/game/home.php" class="sm-btn btn-dark mt-2">GO BACK</a>
+
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
 
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">
