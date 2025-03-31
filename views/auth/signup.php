@@ -32,6 +32,9 @@
         </div>
     </div>
 
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script> 
+
     <script>
         function validateSignup() {
             let password = document.getElementById("password").value;

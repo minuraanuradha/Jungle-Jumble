@@ -65,6 +65,9 @@ $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <a href="../../views/game/home.php" class="sm-btn btn-dark mt-2">GO BACK</a>
 
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
+
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">
         <source src="../../assets/images/bg.mp4" type="video/mp4">

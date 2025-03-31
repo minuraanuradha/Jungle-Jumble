@@ -42,14 +42,17 @@ $highScore = $user ? $user['high_score'] : 0;
         <h5 class="mt-1"> Hello, <?php echo htmlspecialchars($username); ?>!</h5>
         <h6 class="mt-2">🎯High Score : <?php echo htmlspecialchars($highScore); ?></h6>
 
-        <a href="../game/game.php" class="btn btn-primary mt-3">START NEW GAME</a>
-        <a href="../game/leaderboard.php" class="btn btn-secondary mt-1">LEADER BOARD</a>
-        <a href="../game/howtoplay.html" class="btn btn-secondary mt-1">HOW TO PLAY</a>
-        <a href="../game/setting.html" class="btn btn-secondary mt-1">SETTING</a>
+        <a href="../game/game.php" id="click-sound"  class="btn btn-primary mt-3 btn-nav">START NEW GAME</a>
+        <a href="../game/leaderboard.php" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">LEADER BOARD</a>
+        <a href="../game/howtoplay.html" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">HOW TO PLAY</a>
+        <a href="../game/setting.php" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">SETTING</a>
 
         <a href="../../controllers/logout.php" class="btn btn-red mt-3">LOG OUT</a>
         
     </div>
+
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
 
     <!--Background Video-->
     <video id="background-video" autoplay loop muted poster="">

@@ -64,13 +64,16 @@ $highScore = $user ? $user['high_score'] : 0;
 
     <a href="../../views/game/home.php" class="sm-btn btn-dark mt-2">EXIT</a>
 
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
+
     <!-- Message Box -->
     <div class="message-box" style="display: none;  text-align: center;  display: flex;  flex-direction: column; align-items: center; justify-content: center;">
         <p class="message-text"></p>
     </div>
 
     <!-- Banana Game Modal -->
-    <div class="banana-game" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.91); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="banana-game" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.95); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="../../assets/images/monkey-thinking.png" style="width: 150px;">    
         <h1>❓ Want Another Chance?</h1>
         <p>Play the Banana Game to earn an extra life!</p>
@@ -79,7 +82,7 @@ $highScore = $user ? $user['high_score'] : 0;
     </div>
 
     <!-- Game Over Screen -->
-    <div class="game-over" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.91); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="game-over" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.9); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <img src="../../assets/images/monkey-smiling.png" style="width: 150px;">
         <h1>💀 Game Over!</h1>
         <p>Your Final Score: <span id="final-score">0</span></p>

@@ -59,7 +59,10 @@ $playerWon = false; // This should be set based on the game logic
         </div>
     </div>
 
-    <a href="../../views/game/home.html" class="sm-btn btn-dark mt-2">EXIT</a>
+    <a href="../../views/game/home.php" class="sm-btn btn-dark mt-2">EXIT</a>
+
+    <script src="../../assets/js/background-music.js"></script>
+    <script src="../../assets/js/sound.js"></script>
 
     <!-- Game Over Notification -->
     <div class="game-over" style="display: none;position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(42, 42, 42, 0.91); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">

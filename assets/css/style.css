@@ -403,6 +403,58 @@ a{
     background-color: var(--black-dark);
     color: var(--text-white);
 }
+/*setting*/
+.toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    gap: 20px;
+}
+.toggle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-family);  
+    font-size: 0.9rem;
+    font-weight:800;
+}
+.toggle-switch {
+    position: relative;
+    width: 70px;
+    height: 30px;
+    background-color: green;
+    border-radius: var(--radius);
+    transition: background-color 0.3s;
+    cursor: pointer;
+    font-family: var(--font-family);    
+    font-size: 0.8rem;
+    font-weight:600;
+}
+.toggle-switch::before {
+    font-family: var(--font-family); 
+    font-size: 0.8rem;
+    font-weight:600;
+    content: " ON ";
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    background-color: white;
+    border-radius: var(--radius);
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    text-align: center;
+    line-height: 25px;
+    transition: 0.3s;
+}
+.toggle-switch.active {
+    background-color: red;
+}
+.toggle-switch.active::before {
+    left: 32px;
+    content: " OFF "; 
+}
 
 
 /* ============================== */
