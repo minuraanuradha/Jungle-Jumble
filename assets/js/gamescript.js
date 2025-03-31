@@ -11,6 +11,10 @@ const livesText = document.querySelector("#lives"); // Lives count display
 const gameOverBox = document.querySelector(".game-over"); // Game over screen
 const bananaGameBox = document.querySelector(".banana-game");
 const finalScoreText = document.querySelector("#final-score"); // Final score display
+// Load sound effects
+const gameOverSound = new Audio("../../assets/sounds/Error.mp3");
+const bananaGameSound = new Audio("../../assets/sounds/Error.mp3");
+const notification = new Audio("../../assets/sounds/Error.mp3");
 
 // Declaring game variables
 let CorrectWord;
@@ -103,6 +107,8 @@ const checkWord = () => {
 
 const askToPlayBananaGame = () => {
     console.log("Asked to Play Banana triggered"); // Debugging
+    bananaGameSound.play(); // Play sound effect
+    console.log("Play Music");
     bananaGameBox.style.display = "flex"; // Show the modal
 
     const modal = document.createElement("div");
@@ -148,6 +154,8 @@ const loseLife = () => {
 // Function to Handle Game Over
 const gameOver = () => {
     console.log("Game Over triggered"); // Debugging
+    gameOverSound.play(); // Play sound effect
+    console.log("Play Music");
     clearInterval(timer);
     gameOverBox.style.display = "flex"; // Ensure visibility
     finalScoreText.innerHTML = score;
@@ -207,6 +215,7 @@ const restartGame = () => {
 // Function to Show Messages in the Game (Success/Fail)
 const showMessage = (message, color) => {
     messageBox.style.display = "block";
+    notification.play();
     messageBox.style.backgroundColor = color;
     messageText.innerHTML = message;
     setTimeout(() => messageBox.style.display = "none", 2000);
