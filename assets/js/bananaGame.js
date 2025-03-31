@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const gameOverBox = document.querySelector(".game-over"); // Game over notification
     const finalScoreText = document.querySelector("#final-score"); // Final score display
 
+    const gameOverSound = new Audio("../../assets/sounds/Error.mp3");
+
     let correctAnswer = null; // Correct answer for the current question
     let timer; // Variable to hold the timer interval
     let timeLeft = 20; // Initial time in seconds
@@ -92,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function gameOver() {
         console.log("Game Over triggered"); // Debugging
         clearInterval(timer);
+        gameOverSound.play();
         gameOverBox.style.display = "flex"; // Show game over notification
         finalScoreText.innerHTML = score; // Display final score
 
