@@ -37,42 +37,6 @@ $highScore = $user ? $user['high_score'] : 0;
 
     <title>Jungle Jumble Game Play</title>
 
-    <style>
-        .message-box {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8); /* Dark background */
-            color: white;
-            padding: 8% 15%;
-            border-radius: 8px;
-            font-size: 20px;
-            text-align: center;
-            z-index: 1000;
-            min-width: 250px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .message-box.show {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-    </style>
-
 </head>
 <body class="bg-green display-center-center bg-1">
 
@@ -104,7 +68,7 @@ $highScore = $user ? $user['high_score'] : 0;
     <script src="../../assets/js/sound.js"></script>
 
     <!-- Message Box -->
-    <div class="message-box" style="">
+    <div class="message-box" >
         <p class="message-text"></p>
     </div>
 

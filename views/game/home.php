@@ -44,7 +44,7 @@ $highScore = $user ? $user['high_score'] : 0;
 
         <a href="../game/game.php" id="click-sound"  class="btn btn-primary mt-3 btn-nav">START NEW GAME</a>
         <a href="../game/leaderboard.php" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">LEADER BOARD</a>
-        <a href="../game/howtoplay.html" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">HOW TO PLAY</a>
+        <a href="../game/howtoplay.php" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">HOW TO PLAY</a>
         <a href="../game/setting.php" id="click-sound"  class="btn btn-secondary mt-1 btn-nav">SETTING</a>
 
         <a href="../../controllers/logout.php" class="btn btn-red mt-3">LOG OUT</a>
