@@ -16,6 +16,15 @@
     <div class="small-container display-center-center">
         <div class=" display-center-center">
             <form action="../../controllers/AuthController.php" method="POST" onsubmit="return validateSignup()" class="display-center-center">
+                    
+                    <?php if (isset($_GET['error'])): ?>
+                        <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    <?php endif; ?>
+
+                    <?php if (isset($_GET['error'])): ?>
+                        <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    <?php endif; ?>
+
                 <h1 class="mt-1">SIGN UP</h1>
                 <img src="../../assets/images/monkey-smiling.png" style="width: 150px;" class="s">
     

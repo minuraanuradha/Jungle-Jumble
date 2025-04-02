@@ -40,7 +40,7 @@ $playerWon = false; // This should be set based on the game logic
 <body class="bg-green display-center-center bg-1">
 
     <div class="long-row">
-        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;"></p>
+        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Let's Collect Lives</p>
         <img src="../../assets/images/Logo.png" style="width: 8vw;">
         <div class="row"> 
             <p class="sm-btn" style="background-color: #FF5454;color: white;">Lives: <span id="lives">3</span></p>

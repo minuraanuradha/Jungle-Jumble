@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     
         // Check if username or email already exists
         if ($userModel->userExists($username, $email)) {
-            echo json_encode(["status" => "error", "message" => "Username or Email already taken!"]);
-            exit;
+            header("Location: ../views/auth/signup.php?error=Username or Email already taken!");
+            exit();
         }
     
         // Hash password
@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     
         // Register new user
         if ($userModel->registerUser($username, $email, $hashedPassword)) {
-            echo json_encode(["status" => "success", "message" => "Registration successful! You can now log in."]);
-            exit;
+            header("Location: ../views/auth/login.php?success=Registration successful! You can now log in.");
+            exit();
         } else {
-            echo json_encode(["status" => "error", "message" => "Error during registration. Please try again."]);
-            exit;
+            header("Location: ../views/auth/signup.php?error=Error during registration. Please try again.");
+            exit();
         }
     }
 

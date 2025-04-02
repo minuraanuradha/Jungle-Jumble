@@ -18,10 +18,37 @@ const notification = new Audio("../../assets/sounds/Error.mp3");
 
 // Declaring game variables
 let CorrectWord;
+let words = [];
 let score = 0; // Player's score
 let lives = 3; // Player's total lives
 let timer;
 let isGameInitialized = false; // Prevents the game from restarting multiple times
+
+const API_URL = "https://api.jsonbin.io/v3/b/67ecbb548561e97a50f71df8";
+const API_KEY = "$2a$10$dsJvtB6dqSoPsMG57IqOhOLoQtHAJM.7/gXvDcn0U9BJjLPNkzClO"; // Replace with your API key
+
+// Fetch words from API
+const fetchWords = async () => {
+    try {
+        const response = await fetch(API_URL, {
+            headers: { "X-Master-Key": API_KEY }
+        });
+        const data = await response.json();
+        if (data.record.words && data.record.words.length > 0) {
+            words = data.record.words;
+        } else {
+            throw new Error("Empty word list received");
+        }
+    } catch (error) {
+        console.error("Error fetching words:", error);
+        words = [
+            { word: "apple", hint: "A fruit" },
+            { word: "table", hint: "Furniture" }
+        ];
+    }
+    initGame();
+};
+
 
 // Function to Start Timer
 const startTimer = (timeLimit) => {
@@ -44,41 +71,36 @@ const startTimer = (timeLimit) => {
     }, 1000);
 };
 
-// Function to Initialize the Game (Set up a new word)
+// Initialize the Game
 const initGame = () => {
-    if (lives <= 0 || isGameInitialized) return; // Prevents restarting if game is over
+    if (lives <= 0 || isGameInitialized || words.length === 0) return;
 
-    isGameInitialized = true; // Prevents multiple game starts at once
-    console.log("Initializing game...");
     
-    gameOverBox.style.display = "none"; // Hide game over screen when game starts
-    bananaGameBox.style.display = "none"; // Hide game over screen when game starts
-    clearInterval(timer); // Stop any previous timer
-    inputField.value = ""; // Clear input field
-    inputField.focus(); // Focus on input field for better UX
+    gameOverBox.style.display = "none";
+    bananaGameBox.style.display = "none";
+    isGameInitialized = true;
+    clearInterval(timer);
+    inputField.value = "";
+    inputField.focus();
 
-    // Select a random word from the word list
     let randomObj = words[Math.floor(Math.random() * words.length)];
-    let wordArray = randomObj.word.split(""); // Convert word into an array of letters
-
-    // Shuffle the letters randomly
+    let wordArray = randomObj.word.split("");
+    
+    // Shuffle word
     for (let i = wordArray.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
     }
 
-    // Display shuffled word and hint
     wordText.innerHTML = wordArray.join(" ").toUpperCase();
     hintText.innerHTML = randomObj.hint;
     CorrectWord = randomObj.word.toLowerCase();
 
-    startTimer(20); // Start countdown timer
-
-    // Reset game initialization flag after a short delay
-    setTimeout(() => {
-        isGameInitialized = false;
-    }, 100);
+    startTimer(20);
+    setTimeout(() => { isGameInitialized = false; }, 1000);
 };
+
+
 
 // Function to Check the User's Answer
 const checkWord = () => {
@@ -128,15 +150,24 @@ const askToPlayBananaGame = () => {
 };
 
 window.onload = () => {
+    gameOverBox.style.display = "none";
+    bananaGameBox.style.display = "none";
+
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('bonusLife')) {
+    if (urlParams.has("bonusLife")) {
         lives = 1;
         livesText.innerHTML = lives;
-        score = parseInt(urlParams.get('score'));
-        scoreText.innerHTML = score;
-        initGame();
+        let newScore = parseInt(urlParams.get("score"));
+        if (!isNaN(newScore)) {
+            score = newScore;
+            scoreText.innerHTML = score;
+        }
+        history.replaceState(null, "", window.location.pathname);
     }
+
+    fetchWords();
 };
+
 
 // Function to Reduce Lives When Answer is Wrong
 const loseLife = () => {
@@ -246,6 +277,5 @@ inputField.addEventListener("keydown", (event) => {
         checkBtn.click(); // Simulate "Check Word" button click
     }
 });
-
-// Start Game Immediately
-initGame();
+// Fetch words and Start Game
+fetchWords();

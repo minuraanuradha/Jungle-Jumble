@@ -41,7 +41,7 @@ $highScore = $user ? $user['high_score'] : 0;
 <body class="bg-green display-center-center bg-1">
 
     <div class="long-row">
-        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;"></p>
+        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Hello, <?php echo htmlspecialchars($username); ?> | Current High Score :  <?php echo htmlspecialchars($highScore); ?></p>
         <img src="../../assets/images/Logo.png" style="width: 8vw;">
         <div class="row"> 
             <p class="sm-btn" style="background-color: #F8D45C;color: white; margin-right: 10px;  display: flex; align-items: center;justify-content: center;">Score: <span id="score"> 0</span></p>
@@ -53,7 +53,7 @@ $highScore = $user ? $user['high_score'] : 0;
         <p class="timer">⏳ 20s</p>
         <h2 class="mt-3 sufflewords"></h2>
         <p class="mt-4 hint">Hint:  <span> </span></p>
-        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-2 input" >
+        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-5 input" >
 
         <div class="sm-row">
             <button class="sm-btn btn-secondary mt-1 refesh_BTN">Refresh Word</button>

@@ -1,7 +1,7 @@
 /*    VARIABLES & THEME COLORS    */
 /* ============================== */
 :root {
-    --primary-light: #9AEB61;
+    --primary-light: #a8ff69;
     --primary-dark: #79D639;
 
     --secondary-light: #DBEC3A;
@@ -14,6 +14,7 @@
     --black-dark: #171717;
 
     --red: rgb(255, 81, 81);
+    --red1:rgb(255, 20, 20);
 
     --text-white: #FFFFFF;
 
@@ -21,7 +22,7 @@
 
     --txt-btn: 16px;
 
-    --radius: 3px;
+    --radius: 20px;
 }
 
 
@@ -168,11 +169,12 @@
 
 /* Base Button */
 .btn {
+    border: 1px solid #79D639;
     width: 300px;
     height: 35px;
     font-family: var(--font-family);
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 900;
     text-decoration: none;
     text-align: center;
     align-content: center;
@@ -189,7 +191,7 @@
     height: 35px;
     font-family: var(--font-family);
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 900;
     text-decoration: none;
     text-align: center;
     align-content: center;
@@ -255,7 +257,7 @@
 }
 
 .btn-red:hover {
-    background-color: var(--black-dark);
+    background-color: var(--red1);
 }
 
 /* TEXT STYLES */
@@ -420,7 +422,7 @@ a {
 
 .leaderboard-container {
     width: 100%;
-    padding: 5px 10px;
+    padding: 3px 10px;
 }
 
 .leaderboard-card {
@@ -551,16 +553,17 @@ a {
 
 /*message box*/
 .message-box {
+    font-family: var(--font-family);
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.959);
     /* Dark background */
     color: white;
-    padding: 8% 15%;
-    border-radius: 8px;
+    padding: 2% 2%;
+    border-radius: 50px;
     font-size: 20px;
     text-align: center;
     z-index: 1000;
