@@ -15,6 +15,9 @@
 
     <div class="small-container display-center-center">
         <form action="../../controllers/AuthController.php" method="POST" class="display-center-center" id="loginForm">
+                            <?php if (isset($_GET['success'])): ?>
+                                <p style="color: green;"><?php echo htmlspecialchars($_GET['success']); ?></p>
+                             <?php endif; ?>
             <h1 class="mt-2">LOG IN</h1>
             <img src="../../assets/images/monkey-swinging.png" style="width: 150px;" class="mt-1">
 

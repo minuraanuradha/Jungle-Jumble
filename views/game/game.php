@@ -37,47 +37,11 @@ $highScore = $user ? $user['high_score'] : 0;
 
     <title>Jungle Jumble Game Play</title>
 
-    <style>
-        .message-box {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8); /* Dark background */
-            color: white;
-            padding: 8% 15%;
-            border-radius: 8px;
-            font-size: 20px;
-            text-align: center;
-            z-index: 1000;
-            min-width: 250px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .message-box.show {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-    </style>
-
 </head>
 <body class="bg-green display-center-center bg-1">
 
     <div class="long-row">
-        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;"></p>
+        <p class="sm-btn" style="background-color: #ffffff;color: rgb(0, 0, 0);width: 290px;">Hello, <?php echo htmlspecialchars($username); ?> | Current High Score :  <?php echo htmlspecialchars($highScore); ?></p>
         <img src="../../assets/images/Logo.png" style="width: 8vw;">
         <div class="row"> 
             <p class="sm-btn" style="background-color: #F8D45C;color: white; margin-right: 10px;  display: flex; align-items: center;justify-content: center;">Score: <span id="score"> 0</span></p>
@@ -89,7 +53,7 @@ $highScore = $user ? $user['high_score'] : 0;
         <p class="timer">⏳ 20s</p>
         <h2 class="mt-3 sufflewords"></h2>
         <p class="mt-4 hint">Hint:  <span> </span></p>
-        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-2 input" >
+        <input type="text" name="checkword" id="checkword" placeholder="Can you unscramble this?" class="mt-5 input" >
 
         <div class="sm-row">
             <button class="sm-btn btn-secondary mt-1 refesh_BTN">Refresh Word</button>
@@ -104,7 +68,7 @@ $highScore = $user ? $user['high_score'] : 0;
     <script src="../../assets/js/sound.js"></script>
 
     <!-- Message Box -->
-    <div class="message-box" style="">
+    <div class="message-box" >
         <p class="message-text"></p>
     </div>
 
